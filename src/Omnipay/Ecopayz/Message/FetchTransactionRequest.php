@@ -14,7 +14,6 @@ use Omnipay\Common\Exception\InvalidResponseException;
  */
 class FetchTransactionRequest extends AbstractRequest
 {
-
     protected $endpoint = 'https://secure.ecopayz.com/services/MerchantAPI/MerchantAPIService.asmx';
 
     /**
@@ -25,7 +24,6 @@ class FetchTransactionRequest extends AbstractRequest
      */
     public function getData()
     {
-
         $this->validate(
             'merchantId',
             'merchantPassword'
@@ -97,7 +95,6 @@ class FetchTransactionRequest extends AbstractRequest
         }
 
         return $document->saveXML();
-
     }
 
     /**
@@ -110,7 +107,6 @@ class FetchTransactionRequest extends AbstractRequest
      */
     public function sendData($data)
     {
-
         if (strpos($data, 'QueryBySVSTransactionID') !== false) {
 
             $headers = array(
@@ -132,9 +128,12 @@ class FetchTransactionRequest extends AbstractRequest
                 throw new InvalidResponseException('Missing element in XML response');
             }
 
-            return new FetchTransactionResponse($this, $xmlResponse
-                ->QueryBySVSTransactionIDResponse
-                ->TransactionResponse);
+            return new FetchTransactionResponse(
+                $this,
+                $xmlResponse
+                    ->QueryBySVSTransactionIDResponse
+                    ->TransactionResponse
+            );
 
         } elseif (strpos($data, 'QueryByCustomerTransactionID') !== false) {
 
@@ -157,16 +156,17 @@ class FetchTransactionRequest extends AbstractRequest
                 throw new InvalidResponseException('Missing element in XML response');
             }
 
-            return new FetchTransactionResponse($this, $xmlResponse
-                ->QueryByCustomerTransactionIDResponse
-                ->TransactionResponse);
+            return new FetchTransactionResponse(
+                $this,
+                $xmlResponse
+                    ->QueryByCustomerTransactionIDResponse
+                    ->TransactionResponse
+            );
 
         } else {
 
             throw new InvalidRequestException('The transactionId or transactionReference parameter is required');
 
         }
-
     }
-
 }

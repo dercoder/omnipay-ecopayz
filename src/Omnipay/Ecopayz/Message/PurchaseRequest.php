@@ -5,7 +5,7 @@ namespace Omnipay\Ecopayz\Message;
  * Ecopayz Purchase Request
  *
  * When a client connects to the merchant's WEB store and chooses something to purchase,
- * the merchant’s application needs to obtain the money amount of this purchase operation,
+ * the merchant's application needs to obtain the money amount of this purchase operation,
  * so it offers various payment methods to the client (for example, ecoPayz).
  * When the client chooses ecoPayz, the next step can be executed.
  *
@@ -16,11 +16,10 @@ namespace Omnipay\Ecopayz\Message;
  */
 class PurchaseRequest extends AbstractRequest
 {
-
     /**
      * Get the Customer ID at Merchant
      *
-     * The client’s account number at the merchant site.
+     * The client's account number at the merchant site.
      *
      * @return string customer id at merchant
      */
@@ -32,7 +31,7 @@ class PurchaseRequest extends AbstractRequest
     /**
      * Set the Customer ID at Merchant
      *
-     * The client’s account number at the merchant site.
+     * The client's account number at the merchant site.
      *
      * @param  string $value customer id at merchant
      * @return self
@@ -49,7 +48,6 @@ class PurchaseRequest extends AbstractRequest
      */
     public function getData()
     {
-
         $this->validate(
             'merchantId',
             'merchantAccountNumber',

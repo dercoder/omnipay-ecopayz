@@ -11,9 +11,8 @@ namespace Omnipay\Ecopayz\Message;
  */
 class CompletePurchaseResponse extends FetchTransactionResponse
 {
-
     /**
-     * Get the Merchant’s transaction ID.
+     * Get the Merchant transaction ID.
      *
      * @return string transaction reference
      */
@@ -31,5 +30,4 @@ class CompletePurchaseResponse extends FetchTransactionResponse
     {
         return (string) $this->data->SvsTxID;
     }
-
 }

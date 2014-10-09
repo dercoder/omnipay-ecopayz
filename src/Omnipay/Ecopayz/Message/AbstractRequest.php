@@ -11,7 +11,6 @@ namespace Omnipay\Ecopayz\Message;
  */
 abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 {
-
     /**
      * Get the Merchant ID
      *
@@ -129,9 +128,6 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      */
     protected function calculateXmlChecksum($string)
     {
-
-        return md5(str_replace(array("\r\n", "\r", "\n"), '',  trim($string)));
-
+        return md5(str_replace(array("\r\n", "\r", "\n"), '', trim($string)));
     }
-
 }

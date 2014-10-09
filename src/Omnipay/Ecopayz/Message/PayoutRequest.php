@@ -8,13 +8,12 @@ use Omnipay\Common\Exception\InvalidResponseException;
  */
 class PayoutRequest extends AbstractRequest
 {
-
     protected $endpoint = 'https://secure.ecopayz.com/services/MerchantAPI/MerchantAPIService.asmx';
 
     /**
      * Get the Client Account Number
      *
-     * Client’s account number (who receive funds) in the ecoPayz system.
+     * Client account number (who receive funds) in the ecoPayz system.
      *
      * @return string client account number
      */
@@ -26,7 +25,7 @@ class PayoutRequest extends AbstractRequest
     /**
      * Set the Client Account Number
      *
-     * Client’s account number (who receive funds) in the ecoPayz system.
+     * Client account number (who receive funds) in the ecoPayz system.
      *
      * @param  string $value client account number
      * @return self
@@ -39,7 +38,7 @@ class PayoutRequest extends AbstractRequest
     /**
      * Get the Client Account Number at Merchant
      *
-     * Client’s account number at merchant.
+     * Client account number at merchant.
      *
      * @return string client account number at merchant
      */
@@ -51,7 +50,7 @@ class PayoutRequest extends AbstractRequest
     /**
      * Set the Client Account Number at Merchant
      *
-     * Client’s account number at merchant.
+     * Client account number at merchant.
      *
      * @param  string $value client account number at merchant
      * @return self
@@ -68,7 +67,6 @@ class PayoutRequest extends AbstractRequest
      */
     public function getData()
     {
-
         $this->validate(
             'merchantId',
             'merchantPassword',
@@ -142,7 +140,6 @@ class PayoutRequest extends AbstractRequest
         }
 
         return $document->saveXML();
-
     }
 
     /**
@@ -154,7 +151,6 @@ class PayoutRequest extends AbstractRequest
      */
     public function sendData($data)
     {
-
         $headers = array(
             'Content-Type' => 'text/xml; charset=utf-8',
             'SOAPAction' => 'http://www.ecocard.com/merchantAPI/Payout'
@@ -175,6 +171,5 @@ class PayoutRequest extends AbstractRequest
         }
 
         return new FetchTransactionResponse($this, $xmlResponse->PayoutResponse->TransactionResponse);
-
     }
 }

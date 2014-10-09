@@ -16,7 +16,6 @@ use Omnipay\Common\Message\RequestInterface;
  */
 class PurchaseResponse extends AbstractResponse implements RedirectResponseInterface
 {
-
     protected $endpoint = 'https://secure.ecopayz.com/PrivateArea/WithdrawOnlineTransfer.aspx';
 
     public function __construct(RequestInterface $request, $data)
@@ -49,5 +48,4 @@ class PurchaseResponse extends AbstractResponse implements RedirectResponseInter
     {
         return null;
     }
-
 }

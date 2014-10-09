@@ -13,7 +13,6 @@ use Omnipay\Common\Exception\InvalidRequestException;
  */
 class CompletePurchaseRequest extends FetchTransactionRequest
 {
-
     private $trustedIps = array(
         '213.129.76.104', '213.129.76.105',
         '217.21.162.163', '217.21.162.164',
@@ -28,7 +27,6 @@ class CompletePurchaseRequest extends FetchTransactionRequest
      */
     public function getData()
     {
-
         $this->validate(
             'merchantId',
             'merchantPassword'
@@ -58,7 +56,6 @@ class CompletePurchaseRequest extends FetchTransactionRequest
             throw new InvalidRequestException('Missing XML');
 
         }
-
     }
 
     /**
@@ -69,7 +66,6 @@ class CompletePurchaseRequest extends FetchTransactionRequest
      */
     public function sendData($data)
     {
-
         if (isset($data->StatusReport)) {
 
             if (in_array($data->StatusReport->Status, array(1, 2, 3))) {
@@ -87,7 +83,6 @@ class CompletePurchaseRequest extends FetchTransactionRequest
         } else {
             return new CompletePurchaseResponse($this, $data);
         }
-
     }
 
     /**
@@ -106,7 +101,6 @@ class CompletePurchaseRequest extends FetchTransactionRequest
      */
     public function createResponse($status, $errorCode, $errorDescription)
     {
-
         $document = new \DOMDocument('1.0', 'utf-8');
         $document->formatOutput = false;
 
@@ -141,7 +135,6 @@ class CompletePurchaseRequest extends FetchTransactionRequest
         $checksum->nodeValue = $this->calculateXmlChecksum($document->saveXML());
 
         return $document->saveXML();
-
     }
 
     /**
@@ -152,13 +145,10 @@ class CompletePurchaseRequest extends FetchTransactionRequest
      */
     public function validateChecksum($string)
     {
-
         $xml = new \SimpleXMLElement($string);
         $checksum = (string) $xml->Authentication->Checksum;
         $original = str_replace($checksum, $this->getMerchantPassword(), $string);
 
         return md5($original) == $checksum;
-
     }
-
 }

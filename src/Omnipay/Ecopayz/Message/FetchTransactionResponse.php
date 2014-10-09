@@ -13,7 +13,6 @@ use Omnipay\Common\Message\AbstractResponse;
  */
 class FetchTransactionResponse extends AbstractResponse
 {
-
     /**
      * Is the response successful?
      *
@@ -136,5 +135,4 @@ class FetchTransactionResponse extends AbstractResponse
     {
         return (string) $this->data->ProcessingTime;
     }
-
 }
