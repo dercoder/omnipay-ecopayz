@@ -19,7 +19,7 @@ class CompletePurchaseResponse extends FetchTransactionResponse
      */
     public function getTransactionId()
     {
-        return (string)$this->data->ClientTransactionID;
+        return (string) $this->data->ClientTransactionID;
     }
 
     /**
@@ -29,7 +29,7 @@ class CompletePurchaseResponse extends FetchTransactionResponse
      */
     public function getTransactionReference()
     {
-        return (string)$this->data->SvsTxID;
+        return (string) $this->data->SvsTxID;
     }
 
 }

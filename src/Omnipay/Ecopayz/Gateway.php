@@ -117,7 +117,7 @@ class Gateway extends AbstractGateway
     }
 
     /**
-     * @param  array  $parameters
+     * @param  array                                    $parameters
      * @return \Omnipay\Ecopayz\Message\PurchaseRequest
      */
     public function purchase(array $parameters = array())
@@ -126,7 +126,7 @@ class Gateway extends AbstractGateway
     }
 
     /**
-     * @param  array  $parameters
+     * @param  array                                            $parameters
      * @return \Omnipay\Ecopayz\Message\CompletePurchaseRequest
      */
     public function completePurchase(array $parameters = array())
@@ -135,7 +135,7 @@ class Gateway extends AbstractGateway
     }
 
     /**
-     * @param  array  $parameters
+     * @param  array                                  $parameters
      * @return \Omnipay\Ecopayz\Message\PayoutRequest
      */
     public function payout(array $parameters = array())
@@ -144,7 +144,7 @@ class Gateway extends AbstractGateway
     }
 
     /**
-     * @param  array  $parameters
+     * @param  array                                            $parameters
      * @return \Omnipay\Ecopayz\Message\FetchTransactionRequest
      */
     public function fetchTransaction(array $parameters = array())

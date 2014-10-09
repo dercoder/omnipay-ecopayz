@@ -28,7 +28,6 @@ class GatewayTest extends GatewayTestCase
         $this->assertSame('TX9997888', $request->getTransactionId());
         $this->assertSame('14.65', $request->getAmount());
         $this->assertSame('EUR', $request->getCurrency());
-
     }
 
     public function testPayout()

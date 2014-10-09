@@ -15,7 +15,8 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     /**
      * Get the Merchant ID
      *
-     * This is the merchant number and is a four digit numeric value, this is entered by EcoPayz staff at import time.
+     * This is the merchant number and is a four digit numeric value,
+     * this is entered by EcoPayz staff at import time.
      * If this is known this can be entered on submission
      *
      * @return string merchant id
@@ -28,7 +29,8 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     /**
      * Set the Merchant ID
      *
-     * This is the merchant number and is a four digit numeric value, this is entered by EcoPayz staff at import time.
+     * This is the merchant number and is a four digit numeric value,
+     * this is entered by EcoPayz staff at import time.
      * If this is known this can be entered on submission
      *
      * @param  string $value merchant id
@@ -69,7 +71,8 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     /**
      * Get the Merchant Account Number
      *
-     * The merchant’s ecoPayz account number, which will be credited by the purchase transaction.
+     * The merchant’s ecoPayz account number,
+     * which will be credited by the purchase transaction.
      * The number is provided by ecoPayz.
      *
      * @return string merchant account number
@@ -82,7 +85,8 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     /**
      * Set the Merchant Account Number
      *
-     * The merchant’s ecoPayz account number, which will be credited by the purchase transaction.
+     * The merchant’s ecoPayz account number,
+     * which will be credited by the purchase transaction.
      * The number is provided by ecoPayz.
      *
      * @param  string $value merchant account number
@@ -96,12 +100,12 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     /**
      * Get calcuated checksom
      *
-     * The purpose of the checksum is to authenticate the communicating parties (the merchant system and the ecoPayz system)
+     * The purpose of the checksum is to authenticate the communicating parties
      * and to ensure the integrity of the data they send each other.
      * The checksum is an MD5 hash, which is 128 bits or 16 bytes long.
      * The value is expressed as a string of hexadecimal digits in lowercase
      *
-     * @param  array $data data to calculate checksum
+     * @param  array  $data data to calculate checksum
      * @return string checksum
      */
     protected function calculateArrayChecksum(array $data)
@@ -118,7 +122,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      * 4. Compute the MD5 hash of the byte array.
      * 5. Convert the hash to a string, using lowercase hexadecimal digits.
      * 6. Replace the Merchant password in XML’s element Checksum with the hash string.
-     * 7. Send the response AS IS: do not re-format it in any way; keep the original indentation, whitespaces, etc.
+     * 7. Send the response AS IS: do not re-format it in any way.
      *
      * @param  string $string xml string to calculate checksum
      * @return string checksum
@@ -126,10 +130,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     protected function calculateXmlChecksum($string)
     {
 
-        $trimmedString = trim($string);
-        $formatedString = str_replace(array("\r\n", "\r", "\n"), '', $trimmedString);
-
-        return md5($formatedString);
+        return md5(str_replace(array("\r\n", "\r", "\n"), '',  trim($string)));
 
     }
 

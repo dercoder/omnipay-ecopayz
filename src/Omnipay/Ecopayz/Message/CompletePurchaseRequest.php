@@ -24,7 +24,7 @@ class CompletePurchaseRequest extends FetchTransactionRequest
      * Get the data for this request.
      *
      * @throws InvalidRequestException
-     * @return string request data
+     * @return string                  request data
      */
     public function getData()
     {
@@ -51,7 +51,6 @@ class CompletePurchaseRequest extends FetchTransactionRequest
             return new \SimpleXMLElement($xml);
 
         } elseif ($xml = $this->httpRequest->getContent()) {
-
             return new \SimpleXMLElement($xml);
 
         } else {
@@ -65,7 +64,7 @@ class CompletePurchaseRequest extends FetchTransactionRequest
     /**
      * Send the request with specified data
      *
-     * @param  mixed $data The data to send
+     * @param  mixed                    $data The data to send
      * @return FetchTransactionResponse
      */
     public function sendData($data)
@@ -86,7 +85,6 @@ class CompletePurchaseRequest extends FetchTransactionRequest
             die();
 
         } else {
-
             return new CompletePurchaseResponse($this, $data);
         }
 
@@ -101,9 +99,9 @@ class CompletePurchaseRequest extends FetchTransactionRequest
      * - Confirmed
      * - Cancelled
      *
-     * @param string $status           The ecopayz status code
-     * @param int $errorCode           The merchant error code
-     * @param string $errorDescription The merchant error description
+     * @param  string $status           The ecopayz status code
+     * @param  int    $errorCode        The merchant error code
+     * @param  string $errorDescription The merchant error description
      * @return string response
      */
     public function createResponse($status, $errorCode, $errorDescription)
@@ -120,10 +118,17 @@ class CompletePurchaseRequest extends FetchTransactionRequest
             $document->createElement('TransactionResult')
         );
 
-        $result->appendChild($document->createElement('Description', $errorDescription));
-        $result->appendChild($document->createElement('Code', $errorCode));
+        $result->appendChild(
+            $document->createElement('Description', $errorDescription)
+        );
 
-        $response->appendChild($document->createElement('Status', $status));
+        $result->appendChild(
+            $document->createElement('Code', $errorCode)
+        );
+
+        $response->appendChild(
+            $document->createElement('Status', $status)
+        );
 
         $authentication = $response->appendChild(
             $document->createElement('Authentication')
@@ -142,14 +147,14 @@ class CompletePurchaseRequest extends FetchTransactionRequest
     /**
      * Validate Ecopayz XML message
      *
-     * @param string $string The xml string to validate
-     * @return bool result
+     * @param  string $string The xml string to validate
+     * @return bool   result
      */
     public function validateChecksum($string)
     {
 
         $xml = new \SimpleXMLElement($string);
-        $checksum = (string)$xml->Authentication->Checksum;
+        $checksum = (string) $xml->Authentication->Checksum;
         $original = str_replace($checksum, $this->getMerchantPassword(), $string);
 
         return md5($original) == $checksum;

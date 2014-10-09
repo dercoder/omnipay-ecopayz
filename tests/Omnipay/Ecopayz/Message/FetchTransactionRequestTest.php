@@ -15,7 +15,6 @@ class FetchTransactionRequestTest extends TestCase
 
     public function testGetDataByTransactionId()
     {
-
         $this->request->initialize(array(
             'merchantId' => '100',
             'merchantAccountNumber' => '100001',
@@ -29,15 +28,13 @@ class FetchTransactionRequestTest extends TestCase
             ->children('http://schemas.xmlsoap.org/soap/envelope/')
             ->children('http://www.ecocard.com/merchantAPI/');
 
-        $this->assertSame('100', (string)$request->QueryByCustomerTransactionID->QueryByCustomerTransactionIDRequest->MerchantID);
-        $this->assertSame('Y23X05ZS4TDA', (string)$request->QueryByCustomerTransactionID->QueryByCustomerTransactionIDRequest->MerchantPassword);
-        $this->assertSame('TX4567890', (string)$request->QueryByCustomerTransactionID->QueryByCustomerTransactionIDRequest->TxID);
-
+        $this->assertSame('100', (string) $request->QueryByCustomerTransactionID->QueryByCustomerTransactionIDRequest->MerchantID);
+        $this->assertSame('Y23X05ZS4TDA', (string) $request->QueryByCustomerTransactionID->QueryByCustomerTransactionIDRequest->MerchantPassword);
+        $this->assertSame('TX4567890', (string) $request->QueryByCustomerTransactionID->QueryByCustomerTransactionIDRequest->TxID);
     }
 
     public function testGetDatabyTransactionReference()
     {
-
         $this->request->initialize(array(
             'merchantId' => '100',
             'merchantAccountNumber' => '100001',
@@ -51,8 +48,8 @@ class FetchTransactionRequestTest extends TestCase
             ->children('http://schemas.xmlsoap.org/soap/envelope/')
             ->children('http://www.ecocard.com/merchantAPI/');
 
-        $this->assertSame('100', (string)$request->QueryBySVSTransactionID->QueryBySVSTransactionIDRequest->MerchantID);
-        $this->assertSame('Y23X05ZS4TDA', (string)$request->QueryBySVSTransactionID->QueryBySVSTransactionIDRequest->MerchantPassword);
-        $this->assertSame('1865010000008350800', (string)$request->QueryBySVSTransactionID->QueryBySVSTransactionIDRequest->SVSTxID);
+        $this->assertSame('100', (string) $request->QueryBySVSTransactionID->QueryBySVSTransactionIDRequest->MerchantID);
+        $this->assertSame('Y23X05ZS4TDA', (string) $request->QueryBySVSTransactionID->QueryBySVSTransactionIDRequest->MerchantPassword);
+        $this->assertSame('1865010000008350800', (string) $request->QueryBySVSTransactionID->QueryBySVSTransactionIDRequest->SVSTxID);
     }
 }

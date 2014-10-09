@@ -101,20 +101,44 @@ class PayoutRequest extends AbstractRequest
             $document->createElement('q0:PayoutRequest')
         );
 
-        $request->appendChild($document->createElement('q0:MerchantID', $this->getMerchantId()));
-        $request->appendChild($document->createElement('q0:MerchantPassword', $this->getMerchantPassword()));
-        $request->appendChild($document->createElement('q0:MerchantAccountNumber', $this->getMerchantAccountNumber()));
-        $request->appendChild($document->createElement('q0:ClientAccountNumber', $this->getClientAccountNumber()));
-        $request->appendChild($document->createElement('q0:Amount', $this->getAmountInteger()));
-        $request->appendChild($document->createElement('q0:TxID', $this->getTransactionId()));
-        $request->appendChild($document->createElement('q0:Currency', strtoupper($this->getCurrency())));
+        $request->appendChild(
+            $document->createElement('q0:MerchantID', $this->getMerchantId())
+        );
+
+        $request->appendChild(
+            $document->createElement('q0:MerchantPassword', $this->getMerchantPassword())
+        );
+
+        $request->appendChild(
+            $document->createElement('q0:MerchantAccountNumber', $this->getMerchantAccountNumber())
+        );
+
+        $request->appendChild(
+            $document->createElement('q0:ClientAccountNumber', $this->getClientAccountNumber())
+        );
+
+        $request->appendChild(
+            $document->createElement('q0:Amount', $this->getAmountInteger())
+        );
+
+        $request->appendChild(
+            $document->createElement('q0:TxID', $this->getTransactionId())
+        );
+
+        $request->appendChild(
+            $document->createElement('q0:Currency', strtoupper($this->getCurrency()))
+        );
 
         if ($clientAccountNumberAtMerchant = $this->getClientAccountNumberAtMerchant()) {
-            $request->appendChild($document->createElement('q0:ClientAccountNumberAtMerchant', $clientAccountNumberAtMerchant));
+            $request->appendChild(
+                $document->createElement('q0:ClientAccountNumberAtMerchant', $clientAccountNumberAtMerchant)
+            );
         }
 
         if ($description = $this->getDescription()) {
-            $request->appendChild($document->createElement('q0:TransactionDescription', $description));
+            $request->appendChild(
+                $document->createElement('q0:TransactionDescription', $description)
+            );
         }
 
         return $document->saveXML();
@@ -124,7 +148,7 @@ class PayoutRequest extends AbstractRequest
     /**
      * Send the request with specified data
      *
-     * @param  mixed $data The data to send
+     * @param  mixed                    $data The data to send
      * @throws InvalidResponseException
      * @return FetchTransactionResponse
      */
@@ -143,11 +167,11 @@ class PayoutRequest extends AbstractRequest
             ->children('http://www.ecocard.com/merchantAPI/');
 
         if (!isset($xmlResponse->PayoutResponse)) {
-            throw new InvalidResponseException('Missing "PayoutResponse" element in XML response');
+            throw new InvalidResponseException('Missing element in XML response');
         }
 
         if (!isset($xmlResponse->PayoutResponse->TransactionResponse)) {
-            throw new InvalidResponseException('Missing "PayoutResponse/TransactionResponse" element in XML response');
+            throw new InvalidResponseException('Missing element in XML response');
         }
 
         return new FetchTransactionResponse($this, $xmlResponse->PayoutResponse->TransactionResponse);

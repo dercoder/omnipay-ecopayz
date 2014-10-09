@@ -31,7 +31,7 @@ class FetchTransactionResponse extends AbstractResponse
      */
     public function getCode()
     {
-        return (int)$this->data->ErrorCode;
+        return (int) $this->data->ErrorCode;
     }
 
     /**
@@ -41,7 +41,7 @@ class FetchTransactionResponse extends AbstractResponse
      */
     public function getMessage()
     {
-        return (string)$this->data->Message;
+        return (string) $this->data->Message;
     }
 
     /**
@@ -51,7 +51,7 @@ class FetchTransactionResponse extends AbstractResponse
      */
     public function getTransactionId()
     {
-        return (string)$this->data->TxID;
+        return (string) $this->data->TxID;
     }
 
     /**
@@ -61,7 +61,7 @@ class FetchTransactionResponse extends AbstractResponse
      */
     public function getTransactionReference()
     {
-        return (string)$this->data->SVSTxID;
+        return (string) $this->data->SVSTxID;
     }
 
     /**
@@ -71,7 +71,7 @@ class FetchTransactionResponse extends AbstractResponse
      */
     public function getTransactionType()
     {
-        return (string)$this->data->TransactionType;
+        return (string) $this->data->TransactionType;
     }
 
     /**
@@ -81,7 +81,7 @@ class FetchTransactionResponse extends AbstractResponse
      */
     public function getTransactionDescription()
     {
-        return (string)$this->data->TransactionDescription;
+        return (string) $this->data->TransactionDescription;
     }
 
     /**
@@ -94,7 +94,7 @@ class FetchTransactionResponse extends AbstractResponse
      */
     public function getAmount()
     {
-        return (string)number_format($this->data->Amount / 100, 2, '.', '');
+        return (string) number_format($this->data->Amount / 100, 2, '.', '');
     }
 
     /**
@@ -104,7 +104,7 @@ class FetchTransactionResponse extends AbstractResponse
      */
     public function getCurrency()
     {
-        return (string)$this->data->Currency;
+        return (string) $this->data->Currency;
     }
 
     /**
@@ -114,7 +114,7 @@ class FetchTransactionResponse extends AbstractResponse
      */
     public function getMerchantAccountNumber()
     {
-        return (string)$this->data->MerchantAccountNumber;
+        return (string) $this->data->MerchantAccountNumber;
     }
 
     /**
@@ -124,7 +124,7 @@ class FetchTransactionResponse extends AbstractResponse
      */
     public function getClientAccountNumber()
     {
-        return (string)$this->data->ClientAccountNumber;
+        return (string) $this->data->ClientAccountNumber;
     }
 
     /**
@@ -134,7 +134,7 @@ class FetchTransactionResponse extends AbstractResponse
      */
     public function getProcessingTime()
     {
-        return (string)$this->data->ProcessingTime;
+        return (string) $this->data->ProcessingTime;
     }
 
 }

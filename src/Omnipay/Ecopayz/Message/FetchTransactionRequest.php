@@ -21,7 +21,7 @@ class FetchTransactionRequest extends AbstractRequest
      * Get the data for this request.
      *
      * @throws InvalidRequestException
-     * @return string request data
+     * @return string                  request data
      */
     public function getData()
     {
@@ -56,9 +56,17 @@ class FetchTransactionRequest extends AbstractRequest
                 $document->createElement('q0:QueryBySVSTransactionIDRequest')
             );
 
-            $request->appendChild($document->createElement('q0:MerchantID', $this->getMerchantId()));
-            $request->appendChild($document->createElement('q0:MerchantPassword', $this->getMerchantPassword()));
-            $request->appendChild($document->createElement('q0:SVSTxID', $transactionReference));
+            $request->appendChild(
+                $document->createElement('q0:MerchantID', $this->getMerchantId())
+            );
+
+            $request->appendChild(
+                $document->createElement('q0:MerchantPassword', $this->getMerchantPassword())
+            );
+
+            $request->appendChild(
+                $document->createElement('q0:SVSTxID', $transactionReference)
+            );
 
         } elseif ($transactionId = $this->getTransactionId()) {
 
@@ -70,9 +78,17 @@ class FetchTransactionRequest extends AbstractRequest
                 $document->createElement('q0:QueryByCustomerTransactionIDRequest')
             );
 
-            $request->appendChild($document->createElement('q0:MerchantID', $this->getMerchantId()));
-            $request->appendChild($document->createElement('q0:MerchantPassword', $this->getMerchantPassword()));
-            $request->appendChild($document->createElement('q0:TxID', $transactionId));
+            $request->appendChild(
+                $document->createElement('q0:MerchantID', $this->getMerchantId())
+            );
+
+            $request->appendChild(
+                $document->createElement('q0:MerchantPassword', $this->getMerchantPassword())
+            );
+
+            $request->appendChild(
+                $document->createElement('q0:TxID', $transactionId)
+            );
 
         } else {
 
@@ -87,7 +103,7 @@ class FetchTransactionRequest extends AbstractRequest
     /**
      * Send the request with specified data
      *
-     * @param  mixed $data The data to send
+     * @param  mixed                    $data The data to send
      * @throws InvalidResponseException
      * @throws InvalidRequestException
      * @return FetchTransactionResponse
@@ -109,14 +125,16 @@ class FetchTransactionRequest extends AbstractRequest
                 ->children('http://www.ecocard.com/merchantAPI/');
 
             if (!isset($xmlResponse->QueryBySVSTransactionIDResponse)) {
-                throw new InvalidResponseException('Missing "QueryBySVSTransactionIDResponse" element in XML response');
+                throw new InvalidResponseException('Missing element in XML response');
             }
 
             if (!isset($xmlResponse->QueryBySVSTransactionIDResponse->TransactionResponse)) {
-                throw new InvalidResponseException('Missing "QueryBySVSTransactionIDResponse/TransactionResponse" element in XML response');
+                throw new InvalidResponseException('Missing element in XML response');
             }
 
-            return new FetchTransactionResponse($this, $xmlResponse->QueryBySVSTransactionIDResponse->TransactionResponse);
+            return new FetchTransactionResponse($this, $xmlResponse
+                ->QueryBySVSTransactionIDResponse
+                ->TransactionResponse);
 
         } elseif (strpos($data, 'QueryByCustomerTransactionID') !== false) {
 
@@ -132,14 +150,16 @@ class FetchTransactionRequest extends AbstractRequest
                 ->children('http://www.ecocard.com/merchantAPI/');
 
             if (!isset($xmlResponse->QueryByCustomerTransactionIDResponse)) {
-                throw new InvalidResponseException('Missing "QueryByCustomerTransactionIDResponse" element in XML response');
+                throw new InvalidResponseException('Missing element in XML response');
             }
 
             if (!isset($xmlResponse->QueryByCustomerTransactionIDResponse->TransactionResponse)) {
-                throw new InvalidResponseException('Missing "QueryByCustomerTransactionIDResponse/TransactionResponse" element in XML response');
+                throw new InvalidResponseException('Missing element in XML response');
             }
 
-            return new FetchTransactionResponse($this, $xmlResponse->QueryByCustomerTransactionIDResponse->TransactionResponse);
+            return new FetchTransactionResponse($this, $xmlResponse
+                ->QueryByCustomerTransactionIDResponse
+                ->TransactionResponse);
 
         } else {
 
