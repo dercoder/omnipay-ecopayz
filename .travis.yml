@@ -4,18 +4,9 @@ php:
   - 5.3
   - 5.4
   - 5.5
+  - hhvm
 
-before_install:
-  - composer self-update
+before_script:
+  - composer install -n --dev --prefer-source
 
-install:
-  - composer install --no-interaction --dev --prefer-source
-  - wget https://scrutinizer-ci.com/ocular.phar
-
-script:
-  - php vendor/bin/phpunit --coverage-text --coverage-clover build/logs/clover.xml
-  - php vendor/bin/phpcs --standard=PSR2 src
-
-after_script:
-  - php ocular.phar code-coverage:upload --format=php-clover build/logs/clover.xml
-  - php vendor/bin/coveralls -v
+script: vendor/bin/phpcs --standard=PSR2 src && vendor/bin/phpunit --coverage-text

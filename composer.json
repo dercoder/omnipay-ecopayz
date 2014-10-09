@@ -3,25 +3,17 @@
     "type": "library",
     "description": "Ecopayz driver for the Omnipay payment processing library",
     "keywords": [
+        "ecopayz",
         "gateway",
         "merchant",
-        "ukash",
-        "ecopayz",
+        "omnipay",
         "pay",
         "payment"
     ],
     "homepage": "https://github.com/dercoder/omnipay-ecopayz",
     "license": "MIT",
-    "authors": [
-        {
-            "name": "Alexander Fedra",
-            "email": "contact@dercoder.at"
-        }
-    ],
     "autoload": {
-        "psr-0": {
-            "Omnipay\\Ecopayz\\": "src/"
-        }
+        "psr-0": { "Omnipay\\Ecopayz\\" : "src/" }
     },
     "require": {
         "omnipay/common": "~2.0"
