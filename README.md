@@ -11,7 +11,7 @@
 [![License](https://poser.pugx.org/dercoder/omnipay-ecopayz/license.png)](https://packagist.org/packages/dercoder/omnipay-ecopayz)
 
 [Omnipay](https://github.com/omnipay/omnipay) is a framework agnostic, multi-gateway payment
-processing library for PHP 5.3+. This package implements [Eopayz](http://www.ecopayz.com) support for Omnipay.
+processing library for PHP 5.3+. This package implements [Ecopayz](http://www.ecopayz.com) support for Omnipay.
 
 ## Installation
 
@@ -35,7 +35,7 @@ And run composer to update your dependencies:
 
 The following gateways are provided by this package:
 
-* Eopayz
+* Ecopayz
 
 For general usage instructions, please see the main [Omnipay](https://github.com/omnipay/omnipay)
 repository.
