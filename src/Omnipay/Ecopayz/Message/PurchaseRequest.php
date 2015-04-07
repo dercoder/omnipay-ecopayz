@@ -10,7 +10,7 @@ namespace Omnipay\Ecopayz\Message;
  * When the client chooses ecoPayz, the next step can be executed.
  *
  * @author Alexander Fedra <contact@dercoder.at>
- * @copyright 2014 DerCoder
+ * @copyright 2015 DerCoder
  * @license http://opensource.org/licenses/mit-license.php MIT
  * @version 2.0.3 Ecopayz API Specification
  */

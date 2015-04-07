@@ -5,7 +5,7 @@ namespace Omnipay\Ecopayz\Message;
  * Ecopayz Abstract Request
  *
  * @author    Alexander Fedra <contact@dercoder.at>
- * @copyright 2014 DerCoder
+ * @copyright 2015 DerCoder
  * @license   http://opensource.org/licenses/mit-license.php MIT
  * @version   2.0.3 Ecopayz API Specification
  */
@@ -97,7 +97,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     }
 
     /**
-     * Get calcuated checksom
+     * Get calculated checksum
      *
      * The purpose of the checksum is to authenticate the communicating parties
      * and to ensure the integrity of the data they send each other.
@@ -113,7 +113,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     }
 
     /**
-     * Get calcuated checksom
+     * Get calculated checksum
      *
      * 1. Prepare the whole XML document. Store the Merchant password instead of a checksum.
      * 2. If the XML has been created as a DOM, serialize it into a string.

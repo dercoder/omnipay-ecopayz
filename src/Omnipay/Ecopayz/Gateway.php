@@ -7,9 +7,8 @@ use Omnipay\Common\AbstractGateway;
  * Ecopayz Gateway
  *
  * @author Alexander Fedra <contact@dercoder.at>
- * @copyright 2014 DerCoder
+ * @copyright 2015 DerCoder
  * @license http://opensource.org/licenses/mit-license.php MIT
- * @version 1.0.0
  */
 class Gateway extends AbstractGateway
 {

@@ -5,6 +5,11 @@ use Omnipay\Common\Exception\InvalidResponseException;
 
 /**
  * Ecopayz Payout Request
+ *
+ * @author    Alexander Fedra <contact@dercoder.at>
+ * @copyright 2015 DerCoder
+ * @license   http://opensource.org/licenses/mit-license.php MIT
+ * @version   2.0.3 Ecopayz API Specification
  */
 class PayoutRequest extends AbstractRequest
 {
