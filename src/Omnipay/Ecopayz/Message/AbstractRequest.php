@@ -97,6 +97,27 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     }
 
     /**
+     * Get the request callback URL.
+     *
+     * @return string
+     */
+    public function getCallbackUrl()
+    {
+        return $this->getParameter('callbackUrl');
+    }
+
+    /**
+     * Sets the request callback URL.
+     *
+     * @param string $value
+     * @return AbstractRequest Provides a fluent interface
+     */
+    public function setCallbackUrl($value)
+    {
+        return $this->setParameter('callbackUrl', $value);
+    }
+
+    /**
      * Get calculated checksum
      *
      * The purpose of the checksum is to authenticate the communicating parties

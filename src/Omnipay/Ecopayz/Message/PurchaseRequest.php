@@ -78,6 +78,10 @@ class PurchaseRequest extends AbstractRequest
             $data['TransferUrl'] = $notifyUrl;
         }
 
+        if ($callbackUrl = $this->getCallbackUrl()) {
+            $data['CallbackUrl'] = $callbackUrl;
+        }
+
         $data['Checksum'] = $this->calculateArrayChecksum($data);
         return $data;
     }

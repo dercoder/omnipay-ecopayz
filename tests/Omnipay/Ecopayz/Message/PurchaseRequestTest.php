@@ -22,6 +22,7 @@ class PurchaseRequestTest extends TestCase
             'returnUrl'                 => 'http://example.com/return',
             'cancelUrl'                 => 'http://example.com/cancel',
             'notifyUrl'                 => 'http://example.com/notify',
+            'callbackUrl'               => 'http://example.com/callback',
         ));
     }
 
@@ -36,10 +37,11 @@ class PurchaseRequestTest extends TestCase
         $this->assertSame('12.34', $data['Amount']);
         $this->assertSame('EUR', $data['Currency']);
         $this->assertSame('Free Text Description', $data['MerchantFreeText']);
-        $this->assertSame('7320d93a3daa1e296f56fa7f40d6fb8b', $data['Checksum']);
+        $this->assertSame('aa9f664af58922801ac1e23007962af8', $data['Checksum']);
         $this->assertSame('http://example.com/return', $data['OnSuccessUrl']);
         $this->assertSame('http://example.com/cancel', $data['OnFailureUrl']);
         $this->assertSame('http://example.com/notify', $data['TransferUrl']);
+        $this->assertSame('http://example.com/callback', $data['callbackUrl']);
     }
 
     public function testSendData()
