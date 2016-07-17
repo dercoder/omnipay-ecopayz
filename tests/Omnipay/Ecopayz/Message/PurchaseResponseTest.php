@@ -1,13 +1,16 @@
 <?php
 namespace Omnipay\Ecopayz\Message;
-
+use Mockery as m;
 use Omnipay\Tests\TestCase;
 
 class PurchaseResponseTest extends TestCase
 {
     public function testResult()
     {
-        $response = new PurchaseResponse($this->getMockRequest(), array(
+        $request = $this->getMockRequest();
+        $request->shouldReceive('getTestMode');
+        
+        $response = new PurchaseResponse($request, array(
             'PaymentPageID' => '100',
             'MerchantAccountNumber' => '100001',
             'CustomerIdAtMerchant' => '1123456789',
