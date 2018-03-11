@@ -115,7 +115,70 @@ class Gateway extends AbstractGateway
     }
 
     /**
-     * @param  array                                    $parameters
+     * Get the request return URL.
+     *
+     * @return string
+     */
+    public function getReturnUrl()
+    {
+        return $this->getParameter('returnUrl');
+    }
+
+    /**
+     * Sets the request return URL.
+     *
+     * @param string $value
+     * @return AbstractRequest Provides a fluent interface
+     */
+    public function setReturnUrl($value)
+    {
+        return $this->setParameter('returnUrl', $value);
+    }
+
+    /**
+     * Get the request cancel URL.
+     *
+     * @return string
+     */
+    public function getCancelUrl()
+    {
+        return $this->getParameter('cancelUrl');
+    }
+
+    /**
+     * Sets the request cancel URL.
+     *
+     * @param string $value
+     * @return AbstractRequest Provides a fluent interface
+     */
+    public function setCancelUrl($value)
+    {
+        return $this->setParameter('cancelUrl', $value);
+    }
+
+    /**
+     * Get the request transfer URL.
+     *
+     * @return string
+     */
+    public function getNotifyUrl()
+    {
+        return $this->getParameter('notifyUrl');
+    }
+
+    /**
+     * Sets the request transfer URL.
+     *
+     * @param string $value
+     * @return AbstractRequest Provides a fluent interface
+     */
+    public function setNotifyUrl($value)
+    {
+        return $this->setParameter('notifyUrl', $value);
+    }
+
+    /**
+     * @param  array $parameters
      * @return \Omnipay\Ecopayz\Message\PurchaseRequest
      */
     public function purchase(array $parameters = array())
@@ -124,7 +187,7 @@ class Gateway extends AbstractGateway
     }
 
     /**
-     * @param  array                                            $parameters
+     * @param  array $parameters
      * @return \Omnipay\Ecopayz\Message\CompletePurchaseRequest
      */
     public function completePurchase(array $parameters = array())
@@ -133,7 +196,7 @@ class Gateway extends AbstractGateway
     }
 
     /**
-     * @param  array                                  $parameters
+     * @param  array $parameters
      * @return \Omnipay\Ecopayz\Message\PayoutRequest
      */
     public function payout(array $parameters = array())
@@ -142,7 +205,7 @@ class Gateway extends AbstractGateway
     }
 
     /**
-     * @param  array                                            $parameters
+     * @param  array $parameters
      * @return \Omnipay\Ecopayz\Message\FetchTransactionRequest
      */
     public function fetchTransaction(array $parameters = array())
