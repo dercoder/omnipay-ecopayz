@@ -20,7 +20,7 @@
     },
     "require-dev": {
         "omnipay/tests": "^3.0.0",
-        "satooshi/php-coveralls": "1.0.0"
+        "php-coveralls/php-coveralls": "^2.4.0"
     },
     "extra": {
         "branch-alias": {
