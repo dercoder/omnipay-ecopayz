@@ -16,11 +16,12 @@
         "psr-0": { "Omnipay\\Ecopayz\\" : "src/" }
     },
     "require": {
-        "omnipay/common": "^2.0||^3.0"
+        "omnipay/common": "^3.0"
     },
     "require-dev": {
         "omnipay/tests": "^3.0.0",
-        "php-coveralls/php-coveralls": "^2.4.0"
+        "php-coveralls/php-coveralls": "^2.4.0",
+        "squizlabs/php_codesniffer": "3.*"
     },
     "extra": {
         "branch-alias": {

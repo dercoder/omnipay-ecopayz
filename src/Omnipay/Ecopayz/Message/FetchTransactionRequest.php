@@ -1,4 +1,5 @@
 <?php
+
 namespace Omnipay\Ecopayz\Message;
 
 use Omnipay\Common\Exception\InvalidRequestException;
@@ -17,8 +18,8 @@ class FetchTransactionRequest extends AbstractRequest
     /**
      * Get the data for this request.
      *
-     * @throws InvalidRequestException
      * @return string                  request data
+     * @throws InvalidRequestException
      */
     public function getData()
     {
@@ -43,7 +44,6 @@ class FetchTransactionRequest extends AbstractRequest
         );
 
         if ($transactionReference = $this->getTransactionReference()) {
-
             $query = $body->appendChild(
                 $document->createElement('q0:QueryBySVSTransactionID')
             );
@@ -63,9 +63,7 @@ class FetchTransactionRequest extends AbstractRequest
             $request->appendChild(
                 $document->createElement('q0:SVSTxID', $transactionReference)
             );
-
         } elseif ($transactionId = $this->getTransactionId()) {
-
             $query = $body->appendChild(
                 $document->createElement('q0:QueryByCustomerTransactionID')
             );
@@ -85,11 +83,8 @@ class FetchTransactionRequest extends AbstractRequest
             $request->appendChild(
                 $document->createElement('q0:TxID', $transactionId)
             );
-
         } else {
-
             throw new InvalidRequestException('The transactionId or transactionReference parameter is required');
-
         }
 
         return $document->saveXML();
@@ -98,23 +93,21 @@ class FetchTransactionRequest extends AbstractRequest
     /**
      * Send the request with specified data
      *
-     * @param  mixed                    $data The data to send
-     * @throws InvalidResponseException
-     * @throws InvalidRequestException
+     * @param mixed $data The data to send
      * @return FetchTransactionResponse
+     * @throws InvalidRequestException
+     * @throws InvalidResponseException
      */
     public function sendData($data)
     {
         if (strpos($data, 'QueryBySVSTransactionID') !== false) {
-
             $headers = array(
                 'Content-Type' => 'text/xml; charset=utf-8',
                 'SOAPAction' => 'http://www.ecocard.com/merchantAPI/QueryBySVSTransactionID'
             );
 
-            $httpRequest = $this->httpClient->createRequest('POST', $this->getEndpoint(), $headers, $data);
-            $httpResponse = $httpRequest->send();
-            $xmlResponse = $httpResponse->xml()
+            $httpResponse = $this->httpClient->request('POST', $this->getEndpoint(), $headers, $data);
+            $xmlResponse = simplexml_load_string($httpResponse->getBody()->getContents())
                 ->children('http://schemas.xmlsoap.org/soap/envelope/')
                 ->children('http://www.ecocard.com/merchantAPI/');
 
@@ -132,17 +125,14 @@ class FetchTransactionRequest extends AbstractRequest
                     ->QueryBySVSTransactionIDResponse
                     ->TransactionResponse
             );
-
         } elseif (strpos($data, 'QueryByCustomerTransactionID') !== false) {
-
             $headers = array(
                 'Content-Type' => 'text/xml; charset=utf-8',
                 'SOAPAction' => 'http://www.ecocard.com/merchantAPI/QueryByCustomerTransactionID'
             );
 
-            $httpRequest = $this->httpClient->createRequest('POST', $this->getEndpoint(), $headers, $data);
-            $httpResponse = $httpRequest->send();
-            $xmlResponse = $httpResponse->xml()
+            $httpResponse = $this->httpClient->request('POST', $this->getEndpoint(), $headers, $data);
+            $xmlResponse = simplexml_load_string($httpResponse->getBody()->getContents())
                 ->children('http://schemas.xmlsoap.org/soap/envelope/')
                 ->children('http://www.ecocard.com/merchantAPI/');
 
@@ -160,11 +150,8 @@ class FetchTransactionRequest extends AbstractRequest
                     ->QueryByCustomerTransactionIDResponse
                     ->TransactionResponse
             );
-
         } else {
-
             throw new InvalidRequestException('The transactionId or transactionReference parameter is required');
-
         }
     }
 }
