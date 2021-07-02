@@ -27,20 +27,15 @@ class CompletePurchaseRequest extends FetchTransactionRequest
         );
 
         if ($xml = $this->httpRequest->request->get('XML')) {
-
             if (!$this->validateChecksum($xml)) {
                 throw new InvalidRequestException('Invalid XML checksum');
             }
 
             return new \SimpleXMLElement($xml);
-
         } elseif ($xml = $this->httpRequest->getContent()) {
             return new \SimpleXMLElement($xml);
-
         } else {
-
             throw new InvalidRequestException('Missing XML');
-
         }
     }
 
@@ -53,7 +48,6 @@ class CompletePurchaseRequest extends FetchTransactionRequest
     public function sendData($data)
     {
         if (isset($data->StatusReport)) {
-
             if (in_array($data->StatusReport->Status, array(1, 2, 3))) {
                 $response = $this->createResponse('OK', 0, 'OK');
             } elseif (in_array($data->StatusReport->Status, array(4, 5))) {
@@ -65,7 +59,6 @@ class CompletePurchaseRequest extends FetchTransactionRequest
             header('Content-Type: text/xml; charset=utf-8');
             echo $response;
             die();
-
         } else {
             return new CompletePurchaseResponse($this, $data);
         }
